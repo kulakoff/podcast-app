@@ -70,5 +70,3 @@ function renderModalAfterAuth(content) {
     }
     console.log('Content : ', content);
 }
-
-console.log(process.env.DATA_VALUE)
