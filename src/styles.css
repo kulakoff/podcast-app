@@ -53,6 +53,10 @@ button {
     padding: 1rem;
 }
 
+.error {
+    color: red;
+}
+
 @media (min-width: 768px) {
     #sidebar {
         position: fixed;

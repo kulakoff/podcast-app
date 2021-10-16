@@ -1,6 +1,8 @@
 const path = require('path');
 const HTMLPlaugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { EnvironmentPlugin } = require('webpack')
+const Dotenv = require('dotenv-webpack');
 
 
 module.exports = {
@@ -17,7 +19,8 @@ module.exports = {
     plugins: [new HTMLPlaugin({
             template: './src/index.html'
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new Dotenv(),
     ],
     module: {
         rules: [{

@@ -1,10 +1,7 @@
 import { Question } from './question';
 import { createModal, isValid } from './utils'
-import { getAuthFtom } from './auth';
+import { getAuthFtom, authWhithEmailAndPassword } from './auth';
 import './styles.css'
-
-
-
 
 const form = document.getElementById('form');
 const modalBtn = document.getElementById('modal-btn');
@@ -42,12 +39,36 @@ function openModal() {
     createModal('Авторизация', getAuthFtom());
     document
         .getElementById('auth-form')
-        .addEventListener('submit', authFormHandler, { once: true });
+        .addEventListener('submit', authFormHandler,
+            // { once: true }
+        );
 }
 
 function authFormHandler(event) {
     event.preventDefault();
+
+    const btn = event.target.querySelector('button')
     const email = event.target.querySelector('#email').value;
     const password = event.target.querySelector('#password').value;
-    console.log(email, password)
+
+
+    console.log(email, password);
+    btn.disabled = true
+    authWhithEmailAndPassword(email, password)
+        // .then(token => { return Question.fetch(token) })
+        .then(Question.fetch)
+        .then(renderModalAfterAuth)
+        .then(() => btn.disabled = false)
 }
+
+function renderModalAfterAuth(content) {
+    if (typeof content === 'string') {
+        createModal('Ошибка', content)
+    } else {
+        createModal('Список вопросов', Question.listToHTML(content))
+
+    }
+    console.log('Content : ', content);
+}
+
+console.log(process.env.DATA_VALUE)
