@@ -16,19 +16,23 @@
 
     <div id="sidebar">
         <div class="mui--text-white mui--text-display1 mui--align-vertical">
-            Подкаст вопросы
+            Список вопросов
             <br>
-            <small class="author">by author</small></div>
+            <small class="author">by support</small></div>
     </div>
     <div id="content" class="mui-container-fluid">
         <div class="mui-row">
             <div class="mui-col-sm-10 mui-col-sm-offset-1">
                 <br>
                 <br>
-                <div class="mui--text-black-54 mui--text-body2">Задай вопрос</div>
+                <div class="mui--text-black-54 mui--text-body2">Укажите Ваш вопрос</div>
                 <div class="mui-divider"></div>
                 <br>
                 <form class="mui-form" id="form">
+                    <div class="mui-textfield mui-textfield--float-label">
+                        <input type="email" id="email-input" required>
+                        <label for="email-input">Email</label>
+                    </div>
                     <div class="mui-textfield mui-textfield--float-label">
                         <input type="text" id="question-input" required minlength="10" maxlength="256">
                         <label for="question-input">Ваш вопрос:</label>

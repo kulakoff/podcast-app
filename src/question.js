@@ -2,10 +2,10 @@ const firebaseUrl = process.env.FIREBASE_URL
 export class Question {
     static create(question) {
         return fetch(`${firebaseUrl}/questions.json`, {
-                method: 'POST',
-                body: JSON.stringify(question),
-                headers: { 'Content-Type': 'application/json' }
-            })
+            method: 'POST',
+            body: JSON.stringify(question),
+            headers: { 'Content-Type': 'application/json' }
+        })
             .then(response => response.json())
             .then(response => {
                 question.id = response.name
@@ -23,9 +23,9 @@ export class Question {
         list.innerHTML = html;
     }
     static listToHTML(questions) {
-            return questions.length ?
-                `<ol>${questions.map(question => `<li>${question.text}</li>`).join('')}</li></ol>`
-                :'<p>Вопросов пока нет</p>'
+        return questions.length ?
+            `<ol>${questions.map(question => `<li><a href="mailto:${question.email}?subject=Feedback&body=Message">${question.email}</a> ${question.text}</li>`).join('')}</li></ol>`
+            : '<p>Вопросов пока нет</p>'
 
     }
     static fetch(token) {
@@ -35,6 +35,7 @@ export class Question {
         return fetch(`https://podcast-app-d1c85-default-rtdb.europe-west1.firebasedatabase.app/questions.json?auth=${token}`)
             .then(response => response.json())
             .then(response => {
+                console.log(response);
                 if (response && response.error) {
                     return `<p class="error">${response.error}</p>`
                 }
